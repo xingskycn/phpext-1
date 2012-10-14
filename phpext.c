@@ -1,37 +1,28 @@
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
-
+// Include PHP API
 #include "php.h"
+// The module header.
 #include "phpext.h"
+// The object header.
+#include "phpext_obj.h"
 
-static function_entry hello_functions[] = {
-	PHP_FE(hello_world, NULL)
-	{NULL, NULL, NULL}
-};
-
-zend_module_entry hello_module_entry = {
-	#if ZEND_MODULE_API_NO >= 20010901
-		STANDARD_MODULE_HEADER,
- 	#endif
- 	PHP_HELLO_WORLD_EXTNAME,
- 	hello_functions,
+zend_module_entry phpext_module_entry = {
+	STANDARD_MODULE_HEADER,
+ 	PHP_EXTENSION_NAME,
  	NULL,
+ 	PHP_MINIT(phpext),
 	NULL,
 	NULL,
 	NULL,
 	NULL,
-	#if ZEND_MODULE_API_NO >= 20010901
-     		PHP_HELLO_WORLD_VERSION,
- 	#endif
+     	PHP_EXTENSION_VERSION, 
      	STANDARD_MODULE_PROPERTIES
  };
 
-#ifdef COMPILE_DL_HELLO
- 	ZEND_GET_MODULE(hello)
-#endif
-
-PHP_FUNCTION(hello_world)
+// Initialise the object included in this module:
+PHP_MINIT_FUNCTION(phpext) 
 {
-	RETURN_STRING("Hello World", 1);
+	phpext_init_object(TSRMLS_C);
 }
+
+// Install the module.
+ZEND_GET_MODULE(phpext);

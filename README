@@ -1,3 +1,6 @@
-PHP Extension
+My PHP Extension
+------------------------------------------
 
-This project is intended to be a learning project for developing extensions for the PHP interpreter. 
+This repository contains a bare-bones PHP Extension which can be taken and built upon.
+
+Credit to kchodorow/rlyeh and asgrim/testext for tutorial / examples.
