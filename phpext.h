@@ -1,12 +1,11 @@
-#ifndef PHP_HELLO_H
+#ifndef PHPEXT_H
+#define PHPEXT_H
 
-#define PHP_HELLO_H 1
-#define PHP_HELLO_WORLD_VERSION "1.0"
-#define PHP_HELLO_WORLD_EXTNAME "hello"
+#define PHP_EXTENSION_NAME "PHP Extension"
+#define PHP_EXTENSION_VERSION "1.00"
 
-PHP_FUNCTION(hello_world);
+PHP_FUNCTION(my_function);
 
-extern zend_module_entry hello_module_entry;
-#define phpext_hello_ptr &hello_module_entry
+extern zend_module_entry phpext_module_entry;
 
-#endif
+#endif // PHPEXT_H

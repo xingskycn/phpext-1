@@ -1,37 +1,29 @@
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif	
-
+// Include PHP API
 #include "php.h"
+// The module header.
 #include "phpext.h"
 
-static function_entry hello_functions[] = {
-    PHP_FE(hello_world, NULL)
+static function_entry phpext_functions[] = {
+    PHP_FE(my_function, NULL)
     {NULL, NULL, NULL}
 };
 
-zend_module_entry hello_module_entry = {
-    #if ZEND_MODULE_API_NO >= 20010901
-        STANDARD_MODULE_HEADER,
-    #endif
-    PHP_HELLO_WORLD_EXTNAME,
-    hello_functions,
+zend_module_entry phpext_module_entry = {
+    STANDARD_MODULE_HEADER,
+    PHP_EXTENSION_NAME,
+    phpext_functions,
     NULL,
     NULL,
     NULL,
     NULL,
     NULL,
-    #if ZEND_MODULE_API_NO >= 20010901
-        PHP_HELLO_WORLD_VERSION,
-    #endif
+    PHP_EXTENSION_VERSION,
     STANDARD_MODULE_PROPERTIES
 };
 
-#ifdef COMPILE_DL_HELLO
-    ZEND_GET_MODULE(hello)
-#endif
-
-PHP_FUNCTION(hello_world)
+PHP_FUNCTION(my_function)
 {
     RETURN_STRING("Hello World", 1);
 }
+
+ZEND_GET_MODULE(phpext);
